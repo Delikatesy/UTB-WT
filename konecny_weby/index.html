@@ -10,11 +10,9 @@
     <link rel="stylesheet" href="css.css">
 </head>
 <body>
-    <!-- Left box for top-rated anime -->
     <div id="top-rated">
         <h3>10 Nejlépe Hodnocených Anime</h3>
         <ul id="top-rated-list">
-            <!-- Nejlépe hodnocená anime budou zobrazeny zde -->
         </ul>
     </div>
 
@@ -22,15 +20,12 @@
         <h1 class="text-center mb-4">Vyhledáváč Anime</h1>
         <br>
         <br>
-        <!-- Vyhledávací formulář -->
         <div class="mb-3">
             <input type="text" id="anime-name" class="form-control" placeholder="Zadej název anime" oninput="searchAnime()" />
         </div>
 
-        <!-- Seznam návrhů -->
         <ul id="suggestions" class="list-group mb-3"></ul>
 
-        <!-- Zobrazení informací o anime -->
         <div id="anime-info"></div>
     </div>
 
@@ -38,16 +33,14 @@
     <div id="history-box">
         <h3>Historie vyhledávání</h3>
         <ul id="history-list" class="list-group">
-            <!-- Historie vyhledávání se bude zobrazovat zde -->
         </ul>
     </div>
 
-    <!-- Bootstrap 5 JS a Popper.js -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 
     <script>
-        // Funkce pro volání Jikan API pro nejlepší anime
+        // Funkce pro volání Jikan API
         async function getTopRatedAnime() {
             const url = `https://api.jikan.moe/v4/top/anime?limit=10&sort=rating`; // API endpoint pro nejlepší anime
             try {
@@ -56,7 +49,7 @@
 
                 if (data.data && data.data.length > 0) {
                     const topRatedList = document.getElementById('top-rated-list');
-                    topRatedList.innerHTML = ''; // Vyčistíme seznam
+                    topRatedList.innerHTML = ''; 
 
                     data.data.forEach(anime => {
                         const li = document.createElement('li');
@@ -72,7 +65,7 @@
 
                         li.appendChild(text);
                         li.appendChild(img);
-                        li.onclick = () => displayAnimeInfo(anime); // Předáme celý objekt anime do funkce displayAnimeInfo
+                        li.onclick = () => displayAnimeInfo(anime);
 
                         topRatedList.appendChild(li);
                     });
@@ -82,7 +75,7 @@
             }
         }
 
-        // Funkce pro volání Jikan API pro vyhledávání anime
+        // Funkce pro volání Jikan API
         async function searchAnime() {
             const animeName = document.getElementById('anime-name').value;
             const suggestionsList = document.getElementById('suggestions');
@@ -92,7 +85,7 @@
                 return;
             }
 
-            const url = `https://api.jikan.moe/v4/anime?q=${animeName}&limit=5`; // API endpoint pro vyhledávání
+            const url = `https://api.jikan.moe/v4/anime?q=${animeName}&limit=5`;
             try {
                 const response = await fetch(url);
                 const data = await response.json();
@@ -116,7 +109,7 @@
 
                         li.appendChild(text);
                         li.appendChild(img);
-                        li.onclick = () => displayAnimeInfo(anime); // Předáme celý objekt anime
+                        li.onclick = () => displayAnimeInfo(anime);
                         suggestionsList.appendChild(li);
                     });
                     suggestionsList.style.display = 'block';
@@ -130,6 +123,7 @@
         }
 // Funkce pro zobrazení detailů anime po kliknutí na návrh
 async function displayAnimeInfo(anime) {
+   // Překlad
     const translatedType = 
     anime.type === "TV" ? "seriál" :
     anime.type === "Movie" ? "film" :
@@ -139,9 +133,9 @@ async function displayAnimeInfo(anime) {
     anime.type;
     const translatedDuration = anime.duration 
     ? anime.duration
-        .replace("per ep", "za epizodu") // Překlad "per ep" na "za epizodu"
-        .replace("min", "minut")        // Překlad "min" na "minut"
-        .replace("hr", "hodin")         // Překlad "hr" na "hodin"
+        .replace("per ep", "za epizodu") 
+        .replace("min", "minut")        
+        .replace("hr", "hodin")         
     : '';
     
     // Kontrola, zda jsou hodnoty null, a pokud ano, nezobrazí se
@@ -162,14 +156,14 @@ async function displayAnimeInfo(anime) {
     `;
 
     document.getElementById('anime-info').innerHTML = animeInfo;
-    document.getElementById('suggestions').style.display = 'none'; // Skrýt návrhy po kliknutí
+    document.getElementById('suggestions').style.display = 'none';
 
     // Přeložení popisu pomocí MyMemory API
-    const translatedDescription = await translateText(anime.synopsis, 'en', 'cs'); // Překlad z angličtiny do češtiny
+    const translatedDescription = await translateText(anime.synopsis, 'en', 'cs'); 
     document.getElementById('translated-description').textContent = translatedDescription;
 
-    // Přidání anime do historie pouze když uživatel klikne na konkrétní výsledek
-    addToHistory(anime.title); // Přidáme celý název anime, ne jenom část
+    // Přidání anime do historie pouze když uživatel klikne na konkrétní výsledek a přidání názvu anime a ne textu z vyhledávání
+    addToHistory(anime.title);
 }
 
 
