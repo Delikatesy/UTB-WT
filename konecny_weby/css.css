@@ -1,0 +1,141 @@
+body {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap; /* Umožní přizpůsobení layoutu */
+    background-color: #222; /* Šedivé pozadí pro celou stránku */
+    color: white; /* Bílý text pro celou stránku */
+}
+
+h1, h2, h3{
+    color: rgb(255, 221, 149); /* Změna barvy textu při hoveru */
+}
+strong {
+    color: rgb(255, 221, 149); /* Změna barvy textu při hoveru */
+}
+.container {
+    flex: 1;
+    margin-left: 20px;
+}
+
+#anime-info {
+    margin-top: 20px;
+    background-color: #333; /* Tmavší šedá pro anime-info box */
+    padding: 15px;
+    border-radius: 8px;
+}
+
+#suggestions {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    background-color: #555; /* Šedé pozadí pro suggestions box */
+    border: 1px solid #777;
+    max-height: 150px;
+    overflow-y: auto;
+    display: none;
+    border-radius: 8px;
+}
+
+#suggestions li {
+    padding: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    border: none;
+}
+
+#suggestions li img {
+    width: 40px;
+    height: 60px;
+    margin-left: 10px;
+}
+
+#suggestions li:hover {
+    background-color: #666; /* Světlejší šedá pro hover */
+    color: rgb(255, 221, 149); /* Změna barvy textu při hoveru */
+    font-weight: bold;
+}
+
+#history-box {
+    width: 250px;
+    padding: 10px;
+    background-color: #333; /* Šedé pozadí pro history-box */
+    border: 1px solid #777;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    max-height: 360px;
+    overflow-y: auto;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
+#history-box h3 {
+    margin-top: 0;
+}
+
+#history-box ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#history-box ul li {
+    padding: 5px;
+    cursor: pointer;
+    background-color: #333;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    color: white;
+    border: none;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+#history-box ul li:hover {
+    background-color: #222; /* Světlejší šedá pro hover */
+    color: rgb(255, 221, 149); /* Změna barvy textu při hoveru */
+    font-weight: bold;
+}
+
+#top-rated {
+    width: 250px;
+    background-color: #333; /* Šedé pozadí pro top-rated box */
+    border: 1px solid #777;
+    padding: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    margin-right: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
+#top-rated h3 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#top-rated ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#top-rated ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+}
+
+#top-rated ul li img {
+    width: 40px;
+    height: 60px;
+    margin-left: 10px;
+}
+
+#top-rated ul li:hover {
+    background-color: #222; /* Světlejší šedá pro hover */
+    color: rgb(255, 221, 149); /* Změna barvy textu při hoveru */
+    cursor: pointer;
+    font-weight: bold;
+}
